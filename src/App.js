@@ -13,17 +13,18 @@ export default class App extends React.Component {
 
   search = (ev, term) => {
     ev.preventDefault();
-    fetch(`BASE_URL${term}`)
+    fetch(`${BASE_URL}${term}`)
       .then(res => res.json())
-      .then(books => this.setState({books}));
-    console.log(this.state.books);
+      .then(books => this.setState({
+        books: books.items
+      }));
   }
   
   render() {
     return (
       <div>
         <Form handleSearch={this.search}/>
-        <List />
+        <List books={this.state.books} loading={this.state.loading} />
       </div>
     );
   }

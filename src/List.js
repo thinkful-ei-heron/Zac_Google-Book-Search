@@ -1,8 +1,20 @@
 import React from 'react';
+import Result from './Result';
 
-function List() {
-	return(
-		<h3>Results List</h3>
+function List(props) {
+	const results = props.books.map((item, index) => {
+		return( <Result
+			key={`res-${index}`}
+			title={item.volumeInfo.title}
+			subtitle={item.volumeInfo.subtitle}
+			thumb={item.volumeInfo.imageLinks.smallThumbnail}
+		/>);
+	});
+
+	return (
+		<ul>
+			{results}
+		</ul>
 	);
 }
 
