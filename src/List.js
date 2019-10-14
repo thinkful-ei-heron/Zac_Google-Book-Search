@@ -18,8 +18,8 @@ function List(props) {
 			year: item.volumeInfo.publishedDate,
 			blurb: ''
 		}
-		if (item.searchInfo) book.blurb = item.searchInfo.textSnippet;
 		if (item.volumeInfo.imageLinks) book.thumb = item.volumeInfo.imageLinks.thumbnail;
+		if (item.searchInfo) book.blurb = item.searchInfo.textSnippet;
 
 		return( <Result
 			key={`res-${index}`}
