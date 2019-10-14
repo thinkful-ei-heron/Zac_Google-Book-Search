@@ -5,7 +5,9 @@ import Result from './Result';
 function List(props) {
 	if (props.loading) return (<h2>Loading...</h2>); // Display loading indicator
 
-	// TODO: sub-fx that generates author string
+	// TODO: generate proper author string
+
+	// TODO: edit text as it passes through to fix apostrophe codes
 
 	const results = props.books.map((item, index) => {
 		return( <Result
@@ -15,7 +17,7 @@ function List(props) {
 			thumb={item.volumeInfo.imageLinks.smallThumbnail}
 			author={item.volumeInfo.authors}
 			year={item.volumeInfo.publishedDate}
-			blurb={item.searchInfo.textSnippet}
+			// blurb={item.searchInfo.textSnippet}
 		/>);
 	});
 
