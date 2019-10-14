@@ -11,12 +11,16 @@ export default class App extends React.Component {
     error: null
   }
 
+  // Search function called by sumbitting search form
   search = (ev, term) => {
     ev.preventDefault();
+    this.setState({loading: true}); // activate loading indicator
+
     fetch(`${BASE_URL}${term}`)
       .then(res => res.json())
       .then(books => this.setState({
-        books: books.items
+        books: books.items,
+        loading: false // deactivate loading indicator
       }));
   }
   
