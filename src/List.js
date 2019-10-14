@@ -10,14 +10,25 @@ function List(props) {
 	// TODO: edit text as it passes through to fix apostrophe codes
 
 	const results = props.books.map((item, index) => {
+		const book = {
+			title: item.volumeInfo.title,
+			subtitle: item.volumeInfo.subtitle,
+			thumb: '',
+			author: item.volumeInfo.authors,
+			year: item.volumeInfo.publishedDate,
+			blurb: ''
+		}
+		if (item.searchInfo) book.blurb = item.searchInfo.textSnippet;
+		if (item.volumeInfo.imageLinks) book.thumb = item.volumeInfo.imageLinks.thumbnail;
+
 		return( <Result
 			key={`res-${index}`}
-			title={item.volumeInfo.title}
-			subtitle={item.volumeInfo.subtitle}
-			thumb={item.volumeInfo.imageLinks.smallThumbnail}
-			author={item.volumeInfo.authors}
-			year={item.volumeInfo.publishedDate}
-			// blurb={item.searchInfo.textSnippet}
+			title={book.title}
+			subtitle={book.subtitle}
+			thumb={book.thumb}
+			author={book.author}
+			year={book.year}
+			blurb={book.blurb}
 		/>);
 	});
 

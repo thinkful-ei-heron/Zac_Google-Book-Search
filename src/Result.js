@@ -9,7 +9,7 @@ function Result(props) {
 				<h3>{props.title}</h3>
 				{(props.subtitle) && <h4>{props.subtitle}</h4>}
 				<p className='authorLine'><i>{props.author}, {props.year}</i></p>
-				<p className='blurb'>{props.blurb}</p>
+				{(props.blurb) && <p className='blurb'>{props.blurb}</p>}
 			</div>
 		</li>
 	);
