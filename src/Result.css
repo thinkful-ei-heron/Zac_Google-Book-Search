@@ -1,15 +1,20 @@
 li {
 	list-style: none;
 	display: flex;
-	margin: 15px;
+	margin: 5px 10px;
 }
 
 .thumbnail, .titleBlock {
 	display: inline-block;
 	justify-content: top;
 }
-.titleblock {
-	height: 30vh;
+.titleBlock {
+	min-height: 200px;
+	margin: 0 auto;
+}
+
+img {
+	height: 100%;
 }
 
 h3 {
@@ -25,3 +30,8 @@ h4 {
 .authorLine {
 	margin: 8px 0 0;
 }
+
+.resultList {
+	max-width: 728px;
+	margin: 0 auto;
+  }

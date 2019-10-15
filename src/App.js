@@ -1,15 +1,17 @@
-import React from 'react';
-import Form from './Form';
-import List from './List';
+import React from 'react'
+import Form from './Form'
+import List from './List'
 
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
 export default class App extends React.Component {
   state = {
     books: [],
+    openBook: null,
 
     query: '', // search term
     printType: 'all', // all, books, or magazines
+    bookType: 'all', // type of book
 
     loading: false,
     error: null
@@ -25,6 +27,12 @@ export default class App extends React.Component {
 		this.setState({
       printType
 		});
+  }
+  
+  bookChanged = bookType => {
+		this.setState({
+      bookType
+		});
 	}
 
   // Search function called by sumbitting search form
@@ -34,12 +42,12 @@ export default class App extends React.Component {
       loading: true // activate loading indicator
     });
 
-    const query = this.state.query;
-    const printType = this.state.printType;
+    let query = this.state.query;
+    let printType = this.state.printType;
+    let bookType = this.state.bookType;
+    if (bookType === 'all') {bookType = ''} else bookType = `&filter=${bookType}`;
 
-    console.log(this.state);
-
-    fetch(`${BASE_URL}${query}&printType=${printType}`)
+    fetch(`${BASE_URL}${query}&printType=${printType}${bookType}`)
       .then(res => res.json())
       .then(data => this.setState({
         books: data.items,
@@ -49,13 +57,14 @@ export default class App extends React.Component {
   
   render() {
     return (
-      <div>
+      <div className='app'>
         <Form
           search={this.state.query}
           printType={this.state.printType}
           handleSearch={this.handleSearch}
           searchChanged={this.searchChanged}
           printChanged={this.printChanged}
+          bookChanged={this.bookChanged}
         />
         <List
           books={this.state.books}

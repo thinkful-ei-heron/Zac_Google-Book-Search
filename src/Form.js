@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import './form.css'
 
 function Form(props) {
 		return(
@@ -19,6 +20,17 @@ function Form(props) {
 							<option value='all'>All</option>
 							<option value='books'>Books</option>
 							<option value='magazines'>Magazines</option>
+					</select>
+					<label htmlFor='bookType'> Book Type:</label>
+					<select id='bookType'
+						value={props.bookType}
+						onChange={e => {props.bookChanged(e.target.value)}}>
+							<option value='all'>All</option>
+							<option value='ebooks'>eBooks</option>
+							<option value='free-ebooks'>Free eBooks</option>
+							<option value='paid-ebooks'>Paid eBooks</option>
+							<option value='full'>Full text</option>
+							<option value='partial'>Partial text</option>
 					</select>
 				</div>
 			</form>

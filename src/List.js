@@ -1,13 +1,9 @@
-import React from 'react';
-import Result from './Result';
+import React from 'react'
+import Result from './Result'
 
 // Generates list of results
 function List(props) {
 	if (props.loading) return (<h2>Loading...</h2>); // Display loading indicator
-
-	// TODO: generate proper author string
-
-	// TODO: edit text as it passes through to fix apostrophe codes
 
 	const results = props.books.map((item, index) => {
 		const book = {
@@ -16,7 +12,8 @@ function List(props) {
 			thumb: '',
 			author: item.volumeInfo.authors,
 			year: item.volumeInfo.publishedDate,
-			blurb: ''
+			blurb: '',
+			link: item.volumeInfo.previewLink
 		}
 		if (item.volumeInfo.imageLinks) book.thumb = item.volumeInfo.imageLinks.thumbnail;
 		if (item.searchInfo) book.blurb = item.searchInfo.textSnippet;
@@ -29,11 +26,12 @@ function List(props) {
 			author={book.author}
 			year={book.year}
 			blurb={book.blurb}
+			link={book.link}
 		/>);
 	});
 
 	return (
-		<ul>
+		<ul className='resultList'>
 			{results}
 		</ul>
 	);
